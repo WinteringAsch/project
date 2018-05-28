@@ -1,0 +1,31 @@
+<meta charset="utf-8">
+<title>Insert title here</title>
+<meta name="viewprot" content="width=device-width; initial-scale=1.0">
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#btn1").click(function(){
+            $.ajax({
+                url: "test2.txt",
+                dataType: "text",
+                timeout:30000,
+                success: function(data){
+                    //alert(data);
+                    $("#textView1").html(data);
+                },
+                error: function(xhr, message, errorThrown){
+                    var msg = xhr.status + " / " + message + " / " + errorThrown;
+                    //alert(msg);
+                    $("#textView1").html(msg);
+                }
+            });
+        });
+    });
+</script>
+
+
+<input id="btn1" type="button" value="Click Me">
+
+<div id="textView1"></div>
+
+
