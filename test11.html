@@ -1,32 +1,100 @@
-<html>
+﻿<html>
 <head>
-<title>sample</title>
-<script type="text/javascript">
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = functions()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
+    <title>sample</title>
+    <style>
+        body {
+            background-color: black;
+            color: white
         }
-    }
-    rawFile.send(null);
-}
-</script>
+        div {
+        }
+        #weather{
+            float:right;
+        }
+        #Clock{
+            float:left;
+        }
+        #table{
+            position:fixed;
+            bottom:10;
+            left:10;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var display = document.getElementById('display');
+
+            setInterval(function () {
+                var time = new Date();
+                var hours = time.getHours();  // 시
+                var minutes = time.getMinutes();  // 분
+                var seconds = time.getSeconds();  // 초
+
+                // 삼항연산자를 이용하여 시, 분, 초를  두 자리로 유지
+
+                var clock = '';
+                clock += ((hours < 10) ? '0' : '') + hours;
+                clock += ((minutes < 10) ? ':0' : ':') + minutes;
+                clock += ((seconds < 10) ? ':0' : ':') + seconds;
+
+                display.innerHTML = clock;
+            }, 1000);
+        }        
+    </script>
 </head>
 <body>
-<script type="text/javascript">
+    <div id="Clock">
+    <p id="date" style="font-size:50px;">
+        <script>
+            var d = new Date();
+            document.getElementById("date").innerHTML = d.toDateString();
+        </script>
+    <br>
+    <span id="display"> </span></p>
+        </div>
+    <div id="weather">
+    <table cellpadding=0 cellspacing=0 width=206 style="border:solid 1px #222ad3;font-family:Arial;font-size:12px;background-color:#000000">
+        <tr>
+            <td>
+                <table width=100% cellpadding=0 cellspacing=0>
+                    <tr>
+                        <td width=8 height=30 background="http://rp5.ua/informer/htmlinfa/topshl.png" bgcolor=#222ad3></td>
+                        <td width=* align=center background="http://rp5.ua/informer/htmlinfa/topsh.png" bgcolor=#222ad3>
+                            <a style="color:#ffffff; font-family:Arial;font-size: 12px;" href="http://rp5.ua/12514/ko">
+                                <b>
+                                    서울특별시
+                                </b>
+                            </a>
+                        </td>
+                        <td width=8 height=30 background="http://rp5.ua/informer/htmlinfa/topshr.png" bgcolor=#222ad3></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td valign=top style="padding:0;">
+                <iframe src="http://rp5.ua/htmla.php?id=12514&lang=ko&um=00000&bg=%23000000&ft=%23ffffff&fc=%23222ad3&c=%23ffffff&f=Arial&s=12&sc=4" width=100% height=256 frameborder=0 scrolling=no style="margin:0;"></iframe>
+            </td>
+        </tr>
+    </table>
+    </div>
+    <div id="table">
+        <table border="1">
 
-    readTextFile("test2.txt")
+            <tr>
+                <td><img src="pic2.png"></img></td>
+                <td colspan="3">value</td>
+            </tr>
+            <tr>
+                <td>picture</td>
+                <td colspan="3">value</td>
+            </tr>
+            <tr>
+                <td>picture</td>
+                <td colspan="3">value</td>
 
-</script>
-
+            </tr>
+        </table>
+        </div>
 </body>
 </html>
