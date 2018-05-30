@@ -6,18 +6,25 @@
             background-color: black;
             color: white
         }
+
         div {
         }
-        #weather{
-            float:right;
+
+        #weather {
+            float: right;
         }
-        #Clock{
-            float:left;
+
+        #Clock {
+            float: left;
         }
-        #table{
-            float:left;
+
+        #table {
+            float: left;
         }
     </style>
+    <script type="text/javascript"
+            src="http://code.jquery.com/jquery-2.1.0.min.js">
+    </script>
     <script type="text/javascript">
         window.onload = function () {
             var display = document.getElementById('display');
@@ -37,54 +44,93 @@
 
                 display.innerHTML = clock;
             }, 1000);
-        }        
+        }
     </script>
+
+    <script>
+        function readTextFile(file) {
+            var rawFile = new XMLHttpRequest();
+            rawFile.open("GET", file, false);
+            rawFile.onreadystatechange = function () {
+                if (rawFile.readyState === 4) {
+                    if (rawFile.status === 200 || rawFile.status == 0) {
+                        var allText = rawFile.responseText;
+                        document.write(allText);
+                    }
+                }
+            };
+            rawFile.send(null);
+            /*
+            setTimeout("readTextFile(file)", 1500);
+            */
+        }
+    </script>
+<script>
+    $(document).ready(function () {
+        $('#auto').load('test3.txt');
+        refresh();
+    });
+    function refresh() {
+        setTimeout(function () {
+            $('#auto').load('test3.txt');
+            refresh();
+        }, 2000);
+    }
+</script>
+
 </head>
 <body>
     <h1 align="center">
-    <p id="date" style="font-size:50px;">
-        <script>
-            var d = new Date();
-            document.getElementById("date").innerHTML = d.toDateString();
-        </script>
-    <br>
-    <span id="display"> </span></p>
+        <p id="date" style="font-size:50px;">
+            <script>
+                var d = new Date();
+                document.getElementById("date").innerHTML = d.toDateString();
+            </script>
+            <br>
+            <span id="display"> </span>
+        </p>
     </h1>
     <div id="weather">
-    <table cellpadding=0 cellspacing=0 width=206 style="border:solid 1px #222ad3;font-family:Arial;font-size:12px;background-color:#000000">
-        <tr>
-            <td>
-                <table width=100% cellpadding=0 cellspacing=0>
-                    <tr>
-                        <td width=8 height=30 background="http://rp5.ua/informer/htmlinfa/topshl.png" bgcolor=#222ad3></td>
-                        <td width=* align=center background="http://rp5.ua/informer/htmlinfa/topsh.png" bgcolor=#222ad3>
-                            <a style="color:#ffffff; font-family:Arial;font-size: 12px;" href="http://rp5.ua/12514/ko">
-                                <b>
-                                    서울특별시
-                                </b>
-                            </a>
-                        </td>
-                        <td width=8 height=30 background="http://rp5.ua/informer/htmlinfa/topshr.png" bgcolor=#222ad3></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td valign=top style="padding:0;">
-                <iframe src="http://rp5.ua/htmla.php?id=12514&lang=ko&um=00000&bg=%23000000&ft=%23ffffff&fc=%23222ad3&c=%23ffffff&f=Arial&s=12&sc=4" width=100% height=256 frameborder=0 scrolling=no style="margin:0;"></iframe>
-            </td>
-        </tr>
-    </table>
+        <table cellpadding=0 cellspacing=0 width=206 style="border:solid 1px #222ad3;font-family:Arial;font-size:12px;background-color:#000000">
+            <tr>
+                <td>
+                    <table width=100% cellpadding=0 cellspacing=0>
+                        <tr>
+                            <td width=8 height=30 background="http://rp5.ua/informer/htmlinfa/topshl.png" bgcolor=#222ad3></td>
+                            <td width=* align=center background="http://rp5.ua/informer/htmlinfa/topsh.png" bgcolor=#222ad3>
+                                <a style="color:#ffffff; font-family:Arial;font-size: 12px;" href="http://rp5.ua/12514/ko">
+                                    <b>
+                                        서울특별시
+                                    </b>
+                                </a>
+                            </td>
+                            <td width=8 height=30 background="http://rp5.ua/informer/htmlinfa/topshr.png" bgcolor=#222ad3></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td valign=top style="padding:0;">
+                    <iframe src="http://rp5.ua/htmla.php?id=12514&lang=ko&um=00000&bg=%23000000&ft=%23ffffff&fc=%23222ad3&c=%23ffffff&f=Arial&s=12&sc=4" width=100% height=256 frameborder=0 scrolling=no style="margin:0;"></iframe>
+                </td>
+            </tr>
+        </table>
     </div>
     <div id="table">
         <table border="1" width="300" height="500">
             <tr>
-                <td><img src="pic2.png"></img></td>
-                <td colspan="3">value</td>
+                <td><img src="file:///C:/Users/asch0/Documents/GitHub/project/pic2.png"></td>
+                <td colspan="3">
+                    <script>readTextFile('test3.txt');
+                    </script>
+                </td>
             </tr>
             <tr>
-                <td><img src="pic2.png"></img></td>
-                <td colspan="3">value</td>
+                <td><img src="pic2.png"></td>
+                <td colspan="3">
+                    <div id="auto">
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>picture</td>
@@ -93,9 +139,9 @@
             <tr>
                 <td>picture</td>
                 <td colspan="3">value</td>
-
             </tr>
         </table>
-        </div>
+    </div>
+
 </body>
 </html>
